@@ -1,32 +1,42 @@
-[![npm version](https://badge.fury.io/js/router5-rxjs.svg)](https://badge.fury.io/js/router5-rxjs)
-[![Build Status](https://travis-ci.org/router5/router5-rxjs.svg?branch=master)](https://travis-ci.org/router5/router5-rxjs?branch=master)
-[![Coverage Status](https://coveralls.io/repos/router5/router5-rxjs/badge.svg?branch=master&service=github)](https://coveralls.io/github/router5/router5-rxjs?branch=master)
+[![npm version](https://badge.fury.io/js/rxjs-router5.svg)](https://badge.fury.io/js/rxjs-router5)
+[![Build Status](https://travis-ci.org/router5/rxjs-router5.svg?branch=master)](https://travis-ci.org/router5/rxjs-router5?branch=master)
 
-__NOT PUBLISHED YET__: waiting for router5 4.0.0 to be published
+# rxjs-router5
 
-# router5-rxjs
-
-RxJS 5+ plugin for router5: http://router5.github.io
+[rxjs (RxJS 5+)](http://reactivex.io/rxjs/) integration with [router5](http://router5.github.io)
 
 ```sh
-npm install --save router5-rxjs
+npm install --save rxjs-router5
 ```
 
 ### Usage
 
+_rxjs-router5_ exports a single function `createObservables`:
+
 ```js
-import rxPlugin from 'router5-rxjs';
+import createRouter from 'router5';
+import createObservables from 'rxjs-router5';
 
-router
-    .usePlugin(rxPlugin());
-    .start(());
+const router = createRouter([
+    { name: 'home', path: '/home' },
+    { name: 'about', path: '/about' }
+]);
 
-router.rx.route$.map((route) => { /* ... */ })
+const {
+    route$,
+    routeNode,
+    transitionError$,
+    transitionRoute$
+} = createObservables(router)
+
+router.start();
+
+route$.map((route) => { /* ... */ })
 ```
 
 ### Available observables
 
-This plugin adds a `rx` object to your router instance, containing the following:
+`createObservables` returns the following observables:
 - `route$`: an observable of your application route
 - `transitionRoute$`: an observable of the currently transitioning route
 - `transitionError$`: an observable of transition errors
@@ -34,9 +44,5 @@ This plugin adds a `rx` object to your router instance, containing the following
 
 ### Related
 
-- [RxJS 4 plugin](https://github.com/router5/router5-rx)
-- [xstream plugin](https://github.com/router5/xstream-plugin)
-
-### Contributing
-
-Please read [contributing guidelines](https://github.com/router5/router5/blob/master/CONTRIBUTING.md) on router5 repository.
+- [xstream-router5](https://github.com/router5/xstream-router5)
+- [rx-router5](https://github.com/router5/rx-router5)

@@ -1,9 +1,4 @@
 {
     "presets": ["es2015"],
-    "plugins": ["transform-object-rest-spread"],
-    "env": {
-        "es": {
-            "presets": ["es2015-native-modules"]
-        }
-    }
+    "plugins": ["transform-object-rest-spread"]
 }
