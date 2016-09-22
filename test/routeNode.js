@@ -4,9 +4,9 @@ import { state1, state2, state3 } from './_helpers';
 import createObservables from '../modules';
 import createRouter, { constants } from 'router5';
 
-const nestedA = { name: 'a', path: '/a' };
-const nestedAB = { name: 'a.b', path: '/a/b' };
-const nestedAC = { name: 'a.c', path: '/a/c' };
+const nestedA = { name: 'a', path: '/a', meta: { params: {}} };
+const nestedAB = { name: 'a.b', path: '/a/b', meta: { params: {}} };
+const nestedAC = { name: 'a.c', path: '/a/c', meta: { params: {}} };
 
 describe('routeNode', () => {
     it('should see route updates for the root node', () => {
